@@ -2,11 +2,10 @@
 export const site = {
   meta: {
     title: 'Luiz Miranda',
-    description: 'Luiz Miranda builds web products, backend systems, bots, and developer tools.',
+    description: 'I turn ideas into useful software.',
     language: 'en',
     siteUrl: 'https://www.luiz.ink',
     openGraphImage: '/og-image.png',
-    openGraphImageAlt: 'Luiz Miranda portfolio preview with portrait and tagline',
   },
   theme: {
     default: 'dark',
