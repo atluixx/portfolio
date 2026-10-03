@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Momo Trust Display';
+  src: url('/fonts/momo-trust-display-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.display-font { font-family: 'Momo Trust Display', sans-serif; font-synthesis: none; }
+
+@theme inline {
+  --color-page: var(--background);
+  --color-ink: var(--foreground);
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+  --color-line: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  --background: var(--light-background);
+  --foreground: var(--light-foreground);
+  --muted: var(--light-muted);
+  --soft: var(--light-soft);
+  --border: var(--light-border);
+}
+body { min-width: 320px; background: var(--background); color: var(--foreground); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; -webkit-font-smoothing: antialiased; }
+::selection { background: #b8d9d3; color: #111; }
+
+html[data-theme='dark'] {
+  --background: var(--dark-background);
+  --foreground: var(--dark-foreground);
+  --muted: var(--dark-muted);
+  --soft: var(--dark-soft);
+  --border: var(--dark-border);
+}
+html[data-theme='dark'] .sun-icon { display: none; }
+html[data-theme='dark'] .moon-icon { display: block; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(var(--enter-distance)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.enter { animation: rise-in var(--enter-duration) both cubic-bezier(.22,1,.36,1); animation-delay: var(--delay, 0ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .enter { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}

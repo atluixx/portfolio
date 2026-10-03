@@ -1,0 +1,74 @@
+---
+import { site } from '../config';
+import Icon from '../components/Icon.astro';
+import BrandIcon from '../components/BrandIcon.astro';
+import '../styles/global.css';
+
+const c = site.theme;
+const colors = `--light-background:${c.light.background};--light-foreground:${c.light.foreground};--light-muted:${c.light.muted};--light-soft:${c.light.soft};--light-border:${c.light.border};--dark-background:${c.dark.background};--dark-foreground:${c.dark.foreground};--dark-muted:${c.dark.muted};--dark-soft:${c.dark.soft};--dark-border:${c.dark.border};--enter-duration:${site.motion.entranceDurationMs}ms;--enter-distance:${site.motion.entranceDistancePx}px`;
+const external = (href: string) => href.startsWith('http');
+const linkAttrs = (href: string) => external(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+const sectionLabel = 'display-font text-[12px] font-normal uppercase tracking-[2px] text-soft';
+const textLink = 'text-ink underline decoration-muted underline-offset-[3px] transition-[opacity,text-decoration-color] duration-200 hover:opacity-75 hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink';
+---
+<!doctype html>
+<html lang={site.meta.language} data-theme={site.theme.default} style={colors}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={site.meta.description} />
+    <meta name="theme-color" content={c.dark.background} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/momo-trust-display-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <title>{site.meta.title}</title>
+    <script is:inline>
+      try { document.documentElement.dataset.theme = localStorage.getItem('theme') || document.documentElement.dataset.theme; } catch {}
+    </script>
+  </head>
+  <body class="font-mono text-[15px] leading-[1.55]">
+    <div class="fixed top-6 right-6 z-10 flex items-center gap-4 max-[420px]:right-4">
+      <button id="theme-toggle" class="cursor-pointer rounded-sm text-[12px] text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink" type="button" aria-label={site.ui.themeToggleLabel}>[{site.theme.default}]</button>
+      <a class="text-[12px] text-ink underline decoration-muted underline-offset-[3px] transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink" href={site.contact.href}>{site.contact.label}</a>
+    </div>
+    <main class="mx-auto w-full max-w-[680px] max-[720px]:px-6">
+      <div class="flex min-h-svh flex-col justify-center py-16">
+        <header class="enter flex items-center gap-[20px]" style="--delay:30ms">
+          <img class="h-[85px] w-[85px] shrink-0 rounded-full border border-line object-cover grayscale brightness-[.72] transition-[filter,transform] duration-300 hover:scale-[1.04] hover:brightness-100" src={site.profile.image} alt={site.profile.imageAlt} width="85" height="85" />
+          <div class="min-w-0">
+            <h1 class="display-font text-[23px] leading-[1.35] font-normal tracking-[-.6px] text-ink max-[420px]:text-[20px]">{site.profile.name}</h1>
+            <p class="mt-[3px] text-[14px] leading-[1.4] text-muted max-[420px]:text-[12px]">{site.profile.tagline}</p>
+            <p class="mt-[7px] text-[12px] text-soft">{site.profile.location}</p>
+          </div>
+        </header>
+
+        <section class="enter mt-[34px]" style="--delay:125ms" aria-labelledby="about-title">
+          <h2 id="about-title" class={sectionLabel}>{site.about.label}</h2>
+          <p class="mt-[13px] max-w-[600px] text-[14px] leading-[1.7] text-muted">{site.about.text}</p>
+        </section>
+
+        <section class="enter mt-[34px]" style="--delay:215ms" aria-labelledby="projects-title">
+          <h2 id="projects-title" class={sectionLabel}>{site.work.label}</h2>
+          <ul class="mt-[15px] space-y-[9px]">
+            {site.work.projects.map((project, index) => <li class="enter text-[15px] leading-[24px] max-[420px]:text-[14px]" style={`--delay:${245 + index * site.motion.projectStaggerMs}ms`}><a class={textLink} href={project.href} {...linkAttrs(project.href)}>{project.name}</a><span class="text-muted"> — {project.summary}</span></li>)}
+          </ul>
+          <a class="group mt-[25px] inline-flex items-center gap-[8px] text-[14px] text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink" href={site.work.allHref} {...linkAttrs(site.work.allHref)}><span class="underline decoration-muted underline-offset-[3px] transition-colors group-hover:decoration-ink">{site.work.githubLabel}</span><Icon name="arrowRight" size={16} strokeWidth={1.7} class="transition-transform duration-200 group-hover:translate-x-1" /></a>
+        </section>
+
+      </div>
+    </main>
+    <nav class="fixed right-6 bottom-6 z-10 flex items-center gap-2 max-[420px]:right-4 max-[420px]:bottom-4" aria-label={site.social.label}>
+      {site.social.links.map((link) => <a class="grid h-9 w-9 place-items-center rounded-md border border-line text-muted no-underline transition-[color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink" href={link.href} {...linkAttrs(link.href)} aria-label={link.label} title={link.label}><BrandIcon name={link.icon} size={17} /></a>)}
+    </nav>
+    <script is:inline>
+      const toggle = document.getElementById('theme-toggle');
+      const syncLabel = () => { if (toggle) toggle.textContent = `[${document.documentElement.dataset.theme}]`; };
+      syncLabel();
+      toggle?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch {}
+        syncLabel();
+      });
+    </script>
+  </body>
+</html>
