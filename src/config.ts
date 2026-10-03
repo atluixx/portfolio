@@ -4,6 +4,9 @@ export const site = {
     title: 'Luiz Miranda',
     description: 'Luiz Miranda builds web products, backend systems, bots, and developer tools.',
     language: 'en',
+    siteUrl: 'https://www.luiz.ink',
+    openGraphImage: '/og-image.png',
+    openGraphImageAlt: 'Luiz Miranda portfolio preview with portrait and tagline',
   },
   theme: {
     default: 'dark',

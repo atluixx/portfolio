@@ -5,6 +5,8 @@ import BrandIcon from '../components/BrandIcon.astro';
 import '../styles/global.css';
 
 const c = site.theme;
+const canonicalUrl = new URL('/', site.meta.siteUrl).toString();
+const openGraphImageUrl = new URL(site.meta.openGraphImage, site.meta.siteUrl).toString();
 const colors = `--light-background:${c.light.background};--light-foreground:${c.light.foreground};--light-muted:${c.light.muted};--light-soft:${c.light.soft};--light-border:${c.light.border};--dark-background:${c.dark.background};--dark-foreground:${c.dark.foreground};--dark-muted:${c.dark.muted};--dark-soft:${c.dark.soft};--dark-border:${c.dark.border};--enter-duration:${site.motion.entranceDurationMs}ms;--enter-distance:${site.motion.entranceDistancePx}px`;
 const external = (href: string) => href.startsWith('http');
 const linkAttrs = (href: string) => external(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
@@ -17,6 +19,21 @@ const textLink = 'text-ink underline decoration-muted underline-offset-[3px] tra
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={site.meta.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.meta.title} />
+    <meta property="og:title" content={site.meta.title} />
+    <meta property="og:description" content={site.meta.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={openGraphImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.meta.openGraphImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={site.meta.title} />
+    <meta name="twitter:description" content={site.meta.description} />
+    <meta name="twitter:image" content={openGraphImageUrl} />
     <meta name="theme-color" content={c.dark.background} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/momo-trust-display-latin.woff2" as="font" type="font/woff2" crossorigin />
