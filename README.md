@@ -8,7 +8,7 @@ Headings use the locally hosted Momo Trust Display font. Its SIL Open Font Licen
 
 ## Customize
 
-Edit [`src/config.ts`](src/config.ts) for the title, colors, animation timing, profile, featured projects, about text, contact email, and social links. The page shows About me and three projects in one screen, with X and LinkedIn links fixed at the bottom right. The Work with me text link sits at the top right and opens an email draft. Other projects are available through the GitHub link. Replace [`public/avatar.webp`](public/avatar.webp) with your own optimized image, or change `profile.image` in the config to another file in `public/`. The original profile photo is preserved at [`src/assets/avatar-source.png`](src/assets/avatar-source.png).
+Edit [`src/config.ts`](src/config.ts) for the title, colors, animation timing, profile, featured projects, about text, contact email, and social links. The page shows About me and three projects in one screen, with X and LinkedIn links fixed at the bottom right. The Work with me text link opens an email draft, and Copy email provides a fallback in the same top-right row. Other projects are available through the GitHub link. Replace [`public/avatar.webp`](public/avatar.webp) with your own optimized image, or change `profile.image` in the config to another file in `public/`. The original profile photo is preserved at [`src/assets/avatar-source.png`](src/assets/avatar-source.png).
 
 The Open Graph image at `/og-image.png` is generated during the static build from `meta.title`, `meta.description`, and the dark theme colors. Its accessible description follows the same config values.
 

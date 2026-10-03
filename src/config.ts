@@ -36,7 +36,7 @@ export const site = {
     image: '/avatar.webp',
     imageAlt: 'Portrait of Luiz Miranda',
     name: 'Luiz Miranda',
-    tagline: 'building web products and tools for developers',
+    tagline: 'making useful software for the web',
     location: 'Fano, Italy',
   },
   work: {
@@ -44,18 +44,20 @@ export const site = {
     githubLabel: 'Check out my projects',
     allHref: 'https://github.com/atluixx?tab=repositories',
     projects: [
-      { name: 'WSIO', summary: 'a home for everything you share', href: 'https://wsio.lol' },
+      { name: 'WSIO', summary: 'link-in-bio pages with click stats', href: 'https://wsio.lol' },
       { name: 'nine', summary: 'WhatsApp bot with 200+ commands', href: 'https://ninezinho.vercel.app' },
-      { name: 'gftp', summary: 'file transfer protocol in Go', href: 'https://github.com/atluixx/gftp' },
+      { name: 'gftp', summary: 'chunked file transfers in Go', href: 'https://github.com/atluixx/gftp' },
     ],
   },
   about: {
     label: 'About me',
-    text: "I'm a student and independent developer. I work mainly with TypeScript and Go, and I enjoy learning new technologies and turning ideas into useful projects.",
+    text: "I'm a student and independent developer working with TypeScript and Go. I build web products and developer tools, and I'm open to collaborating on new ones.",
   },
   contact: {
     label: 'Work with me',
-    href: 'mailto:luizmiranda.work@outlook.com',
+    email: 'luizmiranda.work@outlook.com',
+    copyLabel: 'Copy email',
+    copiedLabel: 'Copied',
   },
   social: {
     label: "Let's connect",
