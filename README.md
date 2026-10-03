@@ -2,7 +2,7 @@
 
 A static Astro portfolio based on `~/Downloads/fag.png`. It uses Tailwind CSS and Lucide Astro icons, with small CSS animations and no client framework.
 
-Live site: [portfolio-six-sandy-63.vercel.app](https://portfolio-six-sandy-63.vercel.app/). The Vercel `portfolio` project is connected to this repository's `main` branch.
+Live site: [portfolio-atluixx.vercel.app](https://portfolio-atluixx.vercel.app/). The Vercel `portfolio` project is connected to this repository's `main` branch.
 
 Headings use the locally hosted Momo Trust Display font. Its SIL Open Font License is in [`public/fonts/OFL.txt`](public/fonts/OFL.txt).
 
