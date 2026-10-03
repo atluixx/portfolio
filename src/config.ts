@@ -63,7 +63,7 @@ export const site = {
     label: "Let's connect",
     links: [
       { label: 'X (Twitter)', href: 'https://x.com/atluixx', icon: 'x' },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/miranda-luiz', icon: 'linkedin' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/miranda-luiz', icon: 'linkedin' },
     ],
   },
 } as const;
